@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from VirtualClothingStore import views
+from VirtualClothingStore import views as local_views
+from Productos import views as productos_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello-world/', views.helloWorld),
-    path('hi/', views.hi),
+    path('hello-world/', local_views.helloWorld),
+    path('sorted/', local_views.sorted),
+    path('hi/<str:name>/<int:age>/', local_views.sayHi),
+    path('productos/', productos_views.listarProductos)
 ]
