@@ -4,32 +4,37 @@ from faker import Faker
 
 fake = Faker()
 
+
 def generate():
     limit = 20
-    categorias = ['Hombre', 'Mujer', 'Niños']
-    tallas = ['S', 'M', 'L', 'XL']
+    categorias = ["Hombre", "Mujer", "Niños"]
+    tallas = ["S", "M", "L", "XL"]
     productos = []
 
     for _ in range(limit):
         producto = {
-            'idProducto': fake.uuid4(),
-            'nombreProducto': fake.company(),
-            'precioProducto': fake.random_int(min=10, max=100),
-            'descripcionProducto': fake.text(),
-            'stockProducto': fake.random_int(min=10, max=100),
-            'imagenProducto': fake.image_url(width=640, height=480),
-            'categoriaProducto': fake.random_element(categorias),
-            'colorProducto': fake.color_name(),
-            'tallaProducto': fake.random_element(tallas),
-            'fechaCreacionProducto': fake.date_time_this_decade().strftime('%b - %dth, %Y %H:%M hrs')
+            "idProducto": fake.uuid4(),
+            "nombreProducto": fake.company(),
+            "precioProducto": fake.random_int(min=10, max=100),
+            "descripcionProducto": fake.text(),
+            "stockProducto": fake.random_int(min=10, max=100),
+            "imagenProducto": fake.image_url(width=640, height=480),
+            "categoriaProducto": fake.random_element(categorias),
+            "colorProducto": fake.color_name(),
+            "tallaProducto": fake.random_element(tallas),
+            "fechaCreacionProducto": fake.date_time_this_decade().strftime(
+                "%b - %dth, %Y %H:%M hrs"
+            ),
         }
         productos.append(producto)
 
     return productos
 
+
 def listarProductos(request):
-  productos = generate()
-  return render(request,'catalogo.html', {'productos': productos})
+    productos = generate()
+    return render(request, "catalogo.html", {"productos": productos})
+
 
 # # Django
 # from django.http import HttpResponse
